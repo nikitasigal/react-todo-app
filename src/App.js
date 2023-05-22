@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import React, { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { NewTask } from "./components/NewTask"
+import { Task } from "./components/Task"
+uuidv4()
 
-function App() {
+export const App = () => {
+  const [tasks, setTasks] = useState([])
+
+  const addTask = (taskText) => {
+    setTasks([
+      ...tasks,
+      {
+        id: uuidv4(),
+        text: taskText,
+        completed: false,
+      },
+    ])
+  }
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    )
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Планировщик</h1>
+      <NewTask addTask={addTask} />
+      {tasks
+        .sort((l, r) => l.completed - r.completed)
+        .map((task) => (
+          <Task
+            task={task}
+            key={task.id}
+            toggleComplete={toggleComplete}
+            deleteTask={deleteTask}
+          />
+        ))}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

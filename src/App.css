@@ -1,38 +1,88 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 24em;
+  margin-top: 12em;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* background-color: blue; */
+  padding: 16px;
+  gap: 12px;
+}
+
+.NewTask {
+  display: flex;
+  gap: 8px;
+}
+
+.NewTask > * {
+  font-size: medium;
+  padding: 12px 16px;
+  border-width: 0;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.NewTask input {
+  flex-grow: 1;
+}
+
+.NewTask button {
+  font-weight: bold;
+  background-color: cornflowerblue;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.NewTask button.disabled {
+  background-color: lightgray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Task {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  text-align: left;
+}
+
+.Task > * {
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.Task button {
+  border-width: 0;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.Task button.active:hover {
+  color: white;
+  background-color: lightgreen;
+}
+
+.Task button.completed {
+  color: lightgreen;
+}
+
+.Task button.delete {
+  color: tomato;
+}
+
+.Task button.delete:hover {
+  color: white;
+  background-color: tomato;
+}
+
+.Task div {
+  flex-grow: 1;
+  vertical-align: center;
+}
+
+.Task div.completed {
+  color: darkgray;
+  text-decoration: line-through;
 }
